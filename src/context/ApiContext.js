@@ -22,9 +22,7 @@ const ApiContextProvider = (props) => {
 
   const fetchStockPrice = useCallback(
     (code) => {
-      axios
-        // .get(`http://192.168.11.87:8000/api/stockprice/?code=${code}`)
-        // .get(`http://localhost:8000/api/stock_data/?code=${code}`)
+      axios // .get(`http://192.168.11.87:8000/api/stockprice/?code=${code}`)
         // .get(`http://127.0.0.1:8000/api/stock_data/?code=${code}`)
         .get(
           `https://stock-predict-2022.herokuapp.com/api/stock_data/?code=${code}`
@@ -61,7 +59,7 @@ const ApiContextProvider = (props) => {
   const fetchPredict = useCallback((code) => {
     axios
       // .get(`http://192.168.11.87:8000/api/stockprice/?code=${code}`)
-      // .get(`http://localhost:8000/api/stock_data/?code=${code}`)
+      // .get(`http://127.0.0.1:8000/api/predict/?code=${code}`)
       .get(`https://stock-predict-2022.herokuapp.com/api/predict/?code=${code}`)
       .then((res) => {
         console.log(res.status)

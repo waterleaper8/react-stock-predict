@@ -2,10 +2,10 @@ import {
   Autocomplete,
   Card,
   CardContent,
+  Grid,
   TextField,
   Typography,
 } from "@mui/material"
-import { Box } from "@mui/system"
 import React, { useContext } from "react"
 import { Line } from "react-chartjs-2"
 import Chart from "chart.js/auto"
@@ -28,22 +28,18 @@ const Home: React.FC = () => {
   const { price, setSelectedCode, predict } = useContext(ApiContext)
 
   return (
-    <Box sx={{ maxWidth: "1200px", minWidth: "960px", margin: "auto" }}>
-      <Typography variant="h4" sx={{ my: 5 }}>
-        株価予測AI
-      </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-        }}
-      >
+    <Grid container sx={{ px: 10 }} justifyContent="space-evenly">
+      <Grid item xs={12}>
+        <Typography variant="h4" sx={{ my: 5 }}>
+          株価予測AI
+        </Typography>
+      </Grid>
+
+      <Grid item xs={12} md={3} sx={{ mb: 3 }}>
         <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={names}
-          sx={{ width: 300 }}
           renderInput={(params) => (
             <TextField {...params} label="銘柄やコードを入力" />
           )}
@@ -51,30 +47,30 @@ const Home: React.FC = () => {
             setSelectedCode(codename)
           }}
         />
+      </Grid>
 
-        <Box sx={{ minWidth: 275 }}>
-          <Card variant="outlined">
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                次回の終値予測
-              </Typography>
-              <Typography variant="h5" component="div" color={pink[400]}>
-                {predict}円
-              </Typography>
-            </CardContent>
-          </Card>
-        </Box>
-      </Box>
+      <Grid item xs={12} md={3} sx={{ mb: 3 }}>
+        <Card variant="outlined">
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              次回の終値予測
+            </Typography>
+            <Typography variant="h5" component="div" color={pink[400]}>
+              {predict}円
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
       {price && (
-        <Box sx={{ px: 10 }}>
+        <Grid sm={12} md={8}>
           <Line data={price} options={options} height={600} />
-        </Box>
+        </Grid>
       )}
-    </Box>
+    </Grid>
   )
 }
 

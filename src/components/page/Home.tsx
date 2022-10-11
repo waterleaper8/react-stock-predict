@@ -12,7 +12,7 @@ import Chart from "chart.js/auto"
 import { CategoryScale } from "chart.js"
 import json_text from "../model/companylist.json"
 import { ApiContext } from "../../context/ApiContext"
-import { pink } from "@mui/material/colors"
+import { pink, blue } from "@mui/material/colors"
 
 const codenames = JSON.parse(json_text).codename
 const names = Object.keys(codenames).map(function (key) {
@@ -25,7 +25,7 @@ const options = {
 Chart.register(CategoryScale)
 
 const Home: React.FC = () => {
-  const { price, setSelectedCode, predict } = useContext(ApiContext)
+  const { price, setSelectedCode, predict, yesterday } = useContext(ApiContext)
 
   return (
     <Grid container sx={{ px: 10 }} justifyContent="space-evenly">
@@ -49,24 +49,42 @@ const Home: React.FC = () => {
         />
       </Grid>
 
-      <Grid item xs={12} md={3} sx={{ mb: 3 }}>
-        <Card variant="outlined">
-          <CardContent>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              次回の終値予測
-            </Typography>
-            <Typography variant="h5" component="div" color={pink[400]}>
-              {predict}円
-            </Typography>
-          </CardContent>
-        </Card>
+      <Grid container gap={{ lg: 10 }} justifyContent="center">
+        <Grid item xs={12} md={3} sx={{ mb: 3 }}>
+          <Card variant="outlined">
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                前日の終値
+              </Typography>
+              <Typography variant="h5" component="div" color={blue[400]}>
+                {yesterday}円
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={3} sx={{ mb: 3 }}>
+          <Card variant="outlined">
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                次回の終値予測
+              </Typography>
+              <Typography variant="h5" component="div" color={pink[400]}>
+                {predict}円
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
       {price && (
-        <Grid sm={12} md={8}>
+        <Grid sm={12} md={8} sx={{ mb: 10 }}>
           <Line data={price} options={options} height={600} />
         </Grid>
       )}

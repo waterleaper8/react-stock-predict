@@ -19,6 +19,7 @@ const ApiContextProvider = (props) => {
   const [selectedCode, setSelectedCode] = useState("")
   const [price, setPrice] = useState(data)
   const [predict, setPredict] = useState(0)
+  const [yesterday, setYesterday] = useState(0)
 
   const fetchStockPrice = useCallback(
     (code) => {
@@ -48,6 +49,7 @@ const ApiContextProvider = (props) => {
             ],
           }
           setPrice(data)
+          setYesterday(vs[vs.length - 1])
         })
         .catch((error) => {
           console.log(error)
@@ -95,6 +97,8 @@ const ApiContextProvider = (props) => {
         setPrice,
         predict,
         setPredict,
+        yesterday,
+        setYesterday,
       }}
     >
       {props.children}

@@ -28,7 +28,7 @@ const Home: React.FC = () => {
   const { price, setSelectedCode, predict, yesterday } = useContext(ApiContext)
 
   return (
-    <Grid container sx={{ px: 10 }} justifyContent="space-evenly">
+    <Grid container sx={{ px: 5 }} justifyContent="space-evenly">
       <Grid item xs={12}>
         <Typography variant="h4" sx={{ my: 5 }}>
           株価予測AI
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
         />
       </Grid>
 
-      <Grid container gap={{ lg: 10 }} justifyContent="center">
+      <Grid container gap={{ md: 10 }} justifyContent="center">
         <Grid item xs={12} md={3} sx={{ mb: 3 }}>
           <Card variant="outlined">
             <CardContent>
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
         </Grid>
       </Grid>
       {price && (
-        <Grid sm={12} md={8} sx={{ mb: 10 }}>
+        <Grid sm={12} md={10} lg={8} xl={6} sx={{ mb: 10 }}>
           <Line data={price} options={options} height={600} />
         </Grid>
       )}

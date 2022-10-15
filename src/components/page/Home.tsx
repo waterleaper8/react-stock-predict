@@ -106,6 +106,7 @@ const Home: React.FC = () => {
               <Typography variant="h5" component="div" color={pink[400]}>
                 {predictIsLoading ? (
                   <CircularProgress
+                    color="error"
                     style={{
                       width: "24px",
                       height: "24px",

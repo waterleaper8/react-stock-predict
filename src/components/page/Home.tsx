@@ -123,7 +123,7 @@ const Home: React.FC = () => {
         </Grid>
       </Grid>
       {price && (
-        <Grid sm={12} md={10} lg={8} xl={6} sx={{ mb: 10 }}>
+        <Grid sm={12} md={10} lg={8} xl={6} sx={{ mb: 3 }}>
           <Line data={price} options={options} height={600} />
         </Grid>
       )}

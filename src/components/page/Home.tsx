@@ -2,6 +2,7 @@ import {
   Autocomplete,
   Card,
   CardContent,
+  CircularProgress,
   Grid,
   TextField,
   Typography,
@@ -25,7 +26,15 @@ const options = {
 Chart.register(CategoryScale)
 
 const Home: React.FC = () => {
-  const { price, setSelectedCode, predict, yesterday } = useContext(ApiContext)
+  const {
+    price,
+    setSelectedCode,
+    predict,
+    yesterday,
+    errorData,
+    errorPredict,
+    predictIsLoading,
+  } = useContext(ApiContext)
 
   return (
     <Grid container sx={{ px: 5 }} justifyContent="space-evenly">
@@ -47,6 +56,13 @@ const Home: React.FC = () => {
             setSelectedCode(codename)
           }}
         />
+
+        <Typography variant="h6" sx={{ color: "red" }}>
+          {errorData}
+        </Typography>
+        <Typography variant="h6" sx={{ color: "red" }}>
+          {errorPredict}
+        </Typography>
       </Grid>
 
       <Grid container gap={{ md: 10 }} justifyContent="center">
@@ -61,7 +77,18 @@ const Home: React.FC = () => {
                 前日の終値
               </Typography>
               <Typography variant="h5" component="div" color={blue[400]}>
-                {yesterday}円
+                {predictIsLoading ? (
+                  <CircularProgress
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      marginRight: "6px",
+                    }}
+                  />
+                ) : (
+                  yesterday
+                )}
+                円
               </Typography>
             </CardContent>
           </Card>
@@ -77,14 +104,26 @@ const Home: React.FC = () => {
                 次回の終値予測
               </Typography>
               <Typography variant="h5" component="div" color={pink[400]}>
-                {predict}円
+                {predictIsLoading ? (
+                  <CircularProgress
+                    color="error"
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      marginRight: "6px",
+                    }}
+                  />
+                ) : (
+                  predict
+                )}
+                円
               </Typography>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
       {price && (
-        <Grid sm={12} md={10} lg={8} xl={6} sx={{ mb: 10 }}>
+        <Grid sm={12} md={10} lg={8} xl={6} sx={{ mb: 3 }}>
           <Line data={price} options={options} height={600} />
         </Grid>
       )}

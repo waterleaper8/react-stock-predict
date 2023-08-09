@@ -2,6 +2,7 @@ import { ThemeProvider } from "@emotion/react"
 import { createTheme } from "@mui/material"
 import React from "react"
 import "./App.css"
+import Footer from "./components/Footer"
 import Home from "./components/page/Home"
 
 const theme = createTheme({
@@ -32,6 +33,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Home />
+        <Footer />
       </div>
     </ThemeProvider>
   )

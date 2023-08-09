@@ -25,7 +25,8 @@ const ApiContextProvider = (props) => {
     (code) => {
       axios // .get(`http://192.168.11.87:8000/api/stockprice/?code=${code}`)
         // .get(`http://127.0.0.1:8000/api/stock_data/?code=${code}`)
-        .get(`https://stock-api.waterleaper.net/fetch_stock_data?code=${code}`)
+        // .get(`https://stock-api.waterleaper.net/fetch_stock_data?code=${code}`)
+        .get(`https://waterleaper.net/api/stock/fetch_stock_data?code=${code}`)
         .then((res) => {
           console.log(res.status)
           console.log(res.Close)
@@ -61,7 +62,8 @@ const ApiContextProvider = (props) => {
     axios
       // .get(`http://192.168.11.87:8000/api/stockprice/?code=${code}`)
       // .get(`http://127.0.0.1:8000/api/predict/?code=${code}`)
-      .get(`https://stock-api.waterleaper.net/fetch_predict_value?code=${code}`)
+      // .get(`https://stock-api.waterleaper.net/fetch_predict_value?code=${code}`)
+      .get(`https://waterleaper.net/api/stock/fetch_predict_value?code=${code}`)
       .then((res) => {
         console.log(res.status)
         setPredict(res.data)
